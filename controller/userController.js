@@ -44,9 +44,9 @@ const registerUser = async(req,res)=>{
   }
 }
 function getProfile(req,res){
-  console.log(req.cookies.name)
   const filePath = path.join(__dirname,"..","client","img", "2222-Japee-1692876322610-gettyimages-171271182-170667a.jpg");
   if(fs.existsSync(filePath)){
+    console.log("file catch")
     return res.sendFile(filePath)
   }
   res.sendStatus(404)

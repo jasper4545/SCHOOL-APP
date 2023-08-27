@@ -3,6 +3,8 @@ const v1Router = express.Router()
 const validateToken = require("../middleware/validateToken")
 const verifyToken = require("../middleware/verifyToken")
 const  { userLogin, getAllUser, registerUser, getProfile } = require("../controller/userController")
+const upload = require("../config/uploadImg")
+
 v1Router.route("/users")
    .get(verifyToken,getAllUser)
   
@@ -15,7 +17,7 @@ v1Router.route("/users/login")
 v1Router.route("/users/register")
    .post(registerUser)
 
-v1Router.route("users/profile")
+v1Router.route("/users/profile")
    .get(getProfile)
   
 module.exports = v1Router
