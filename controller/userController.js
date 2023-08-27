@@ -19,6 +19,10 @@ const userLogin = async (req,res)=>{
 }
 
 const getAllUser = async(req,res)=>{
+ if(Cache.has(req.url)){
+   console.log("sending cache data")
+  return res.status(200).json({"success":true, "users": JSON.parse(Cache.get(req.url))})
+ }
   try{
     const getRes = await usersDB.findAll();
     Cache.set(req.url, JSON.stringify(getRes))
