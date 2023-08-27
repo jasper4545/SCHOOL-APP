@@ -11,8 +11,9 @@ const userLogin = async (req,res)=>{
     });
     res.cookie("name", "jasper", {maxAge: 1*1000*60, httpOnly:true})
     if(getRes && getRes.length === 0) return res.status(301).json({"message":"no such user", "noUser":true})
-    res.status(200).json({"success": true, "message":"you are successfully login", "token": req.token, "user": getRes.dataValues})
+    res.status(200).json({"success": true, "message":"you are successfully login", "token": Cache.get("jwt"), "user": getRes.dataValues})
   }catch(e){
+    console.log("error: "+e)
     res.status(500).json({"error": e, "message": "Server Error on Database"})
   }
 }
